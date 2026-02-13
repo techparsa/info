@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوالات متداول - راه ادیتوری</title>
+    <link rel="icon" href="https://www.pngall.com/wp-content/uploads/15/Arthur-Morgan-PNG-Free-Image.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #CD853F;
+            --light: #F5F5DC;
+            --dark: #3E2723;
+            --text: #3E2723;
+            --gold: #D4AF37;
+            --brown: #5D4037;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--brown) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/old-map.png');
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* هدر */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            padding: 10px;
+            background: var(--dark);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        
+        /* بخش سوالات */
+        .faq-section {
+            background: rgba(62, 39, 35, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .faq-item {
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--accent);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: rgba(205, 133, 63, 0.2);
+        }
+        
+        .faq-question i {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(62, 39, 35, 0.8);
+            border-top: 1px solid transparent;
+        }
+        
+        .faq-answer p {
+            padding: 20px 0;
+            line-height: 1.8;
+            color: var(--light);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            border-top: 1px solid var(--accent);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* بخش تماس */
+        .contact-section {
+            background: rgba(62, 39, 35, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            background: rgba(139, 69, 19, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+            background: rgba(205, 133, 63, 0.2);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .contact-item p {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary), var(--gold));
+            color: var(--dark);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--gold), var(--secondary));
+        }
+        
+        /* فوتر */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(205, 133, 63, 0.3);
+            border-radius: 50%;
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        /* انیمیشن‌ها */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .faq-item {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+        .faq-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .faq-section, .contact-section {
+                padding: 20px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- هدر -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://www.pngall.com/wp-content/uploads/15/Arthur-Morgan-PNG-Photos.png" alt="آرتور مورگان">
+            </div>
+            <h1 class="title">سوالات متداول</h1>
+            <p class="subtitle">هر آنچه باید درباره راه ادیتوری بدانید</p>
+        </div>
+        
+        <!-- بخش سوالات متداول -->
+        <div class="faq-section">
+            <h2 class="section-title">پرسش‌های پرتکرار</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>چگونه می‌توانم محصولات را خریداری کنم؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>برای خرید محصولات هنوز بخش خریداری از سایت حاضر نشده پس لطفا به تلگرام اقدام کنید برای خرید و گرفتن بسته و پکیج  خودتون </p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>آیا محصولات دارای پشتیبانی هستند؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>بله، تمامی محصولات ما دارای پشتیبانی رایگان هستند. در صورت بروز هرگونه مشکل در نصب یا استفاده از محصولات، می‌توانید از طریق تلگرام با ما در ارتباط باشید.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>روش‌های پرداخت چه هستند؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>شما می‌توانید از طریق درگاه‌های بانکی، کارت به کارت و همچنین کیف پول‌های الکترونیکی اقدام به پرداخت کنید. تمامی تراکنش‌ها امن و مطمئن هستند.</p>
+                    <p>لطفا توجه کنید ما فقط در تلگرام از شما رسید بانکی عکسش رو میگیرم پس از حاصل شدن اطمینان از واریزی شما به شما لینک ارسال خواهد شد جهت استفاده از بسته ها و پکیج های اغدیاتوری</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>چگونه محصولات را پس از خرید دانلود کنم؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>بلافاصله پس از پرداخت موفق،و ارسال رسید به ایدی @megaedit_kia در تلگرام لینکی به شما روی درایو مجازی و یا چنل تلگرامی ارسال خواهد شد تا بتوانید بسته خریداری شده خود را ببینید  و استفاده کنید  لینک دانلود محصولات در پنل کاربری شما فعال شده و همچنین به ایمیل شما ارسال خواهد شد. همچنین می‌توانید از طریق گوگل درایو به فایل‌ها دسترسی داشته باشید.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>آیا امکان بازگشت وجه وجود دارد؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>به دلیل ماهیت دیجیتالی محصولات، امکان بازگشت وجه پس از دانلود وجود ندارد. اما در صورت بروز مشکل در فایل‌ها،ما به تمامی سوالات شما جهت برطرف شدن مشکلتون میپردازیمم.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>چگونه می‌توانم با پشتیبانی تماس بگیرم؟</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>شما می‌توانید از طریق راه‌های ارتباطی موجود در پایین صفحه با ما در تماس باشید. معمولاً در کمتر از ۲۴ ساعت به پیام‌های شما پاسخ داده می‌شود.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- بخش تماس -->
+        <div class="contact-section">
+            <h2 class="contact-title">هنوز سوالی دارید؟</h2>
+            <p>با خیال راحت با ما در تماس باشید</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <h3>تلگرام</h3>
+                    <p>@MEGAEDIT-KIA</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>ایمیل</h3>
+                    <p>.....</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>تلفن</h3>
+                    <p>00000000000</p>
+                </div>
+            </div>
+            
+            <a href="https://t.me/MEGAEDIT_KIA" class="btn" target="_blank">
+                <i class="fab fa-telegram"></i>
+                ارتباط از طریق تلگرام
+            </a>
+        </div>
+        
+        <!-- فوتر -->
+        <div class="footer">
+            <p>فروشگاه راه ادیتوری - طراحی شده توسط محمد جعفر افرازه</p>
+            <p>تمامی حقوق محفوظ است © 1404</p>
+            
+            <div class="social-links">
+                <a href="https://t.me/Tech_parsa" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://t.me/Megaedit_kia1" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/megaedit-kia2025" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // مدیریت باز و بسته شدن سوالات
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // بستن سایر سوالات
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // انیمیشن اسکرول نرم
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // افکت تایپ برای عنوان
+        const title = document.querySelector('.title');
+        const text = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // شروع تایپ پس از بارگذاری صفحه
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>
